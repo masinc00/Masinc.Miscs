@@ -55,7 +55,7 @@ namespace Masinc.Miscs.Disposers
 }
 namespace Masinc.Miscs
 {
-    public static partial class Misc
+    public static partial class MiscExtensions
     {
         public static TDisposable AddResourceManager<TDisposable>(this TDisposable @this, Disposers.ResourceDisposer resourceManager)
             where TDisposable : IDisposable
