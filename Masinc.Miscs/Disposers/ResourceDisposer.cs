@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Masinc.Miscs
+namespace Masinc.Miscs.Disposers
 {
-    public sealed class ResourceManager : IDisposable
+    public sealed class ResourceDisposer : IDisposable
     {
         readonly List<IDisposable> resource;
         bool disposed;
         readonly object disposed_lock;
 
-        public ResourceManager()
+        public ResourceDisposer()
         {
             resource = new List<IDisposable>();
             disposed_lock = new object();
@@ -21,7 +21,7 @@ namespace Masinc.Miscs
             resource.Add(disposable);
         }
 
-        ~ResourceManager()
+        ~ResourceDisposer()
         {
             lock (disposed_lock)
             {
@@ -52,10 +52,12 @@ namespace Masinc.Miscs
             this.disposed = true;
         }
     }
-
+}
+namespace Masinc.Miscs
+{
     public static partial class Misc
     {
-        public static TDisposable AddResourceManager<TDisposable>(this TDisposable @this, ResourceManager resourceManager)
+        public static TDisposable AddResourceManager<TDisposable>(this TDisposable @this, Disposers.ResourceDisposer resourceManager)
             where TDisposable : IDisposable
         {
             resourceManager.Add(@this);

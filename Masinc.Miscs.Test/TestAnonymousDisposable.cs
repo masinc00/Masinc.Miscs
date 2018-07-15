@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Masinc.Miscs;
+using Masinc.Miscs.Disposers;
 using System.Linq;
 using System.Threading.Tasks;
 

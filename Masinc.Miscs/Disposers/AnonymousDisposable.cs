@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Masinc.Miscs
+namespace Masinc.Miscs.Disposers
 {
     internal class AnonymousDisposable : IDisposable
     {
@@ -15,7 +15,7 @@ namespace Masinc.Miscs
         }
 
         ~AnonymousDisposable()
-        {            
+        {
             lock (disposed_lock)
             {
                 if (!disposed)
@@ -39,8 +39,9 @@ namespace Masinc.Miscs
             }
         }
     }
-
-
+}
+namespace Masinc.Miscs
+{ 
     public static partial class Misc
     {
         /// <summary>
@@ -56,7 +57,7 @@ namespace Masinc.Miscs
         /// <returns>スレッドセーフな無名IDisposableインターフェイス</returns>
         public static IDisposable Disposable(Action<bool> dispose)
         {
-            return new AnonymousDisposable(dispose);
+            return new Disposers.AnonymousDisposable(dispose);
         }
     }
 }
