@@ -15,7 +15,7 @@ namespace Masinc.Miscs
         /// </summary>        
         /// <param name="@this">送信元インスタンス</param>
         /// <param name="propertyName">プロパティ名を表すExpression。() => Nameのように指定する。</param>
-        public static void Raise(PropertyChangedEventHandler h, object @this = null, [CallerMemberName]string propertyName = null)
+        public static void Raise(this PropertyChangedEventHandler h, object @this = null, [CallerMemberName]string propertyName = null)
         {
             if (h == null) return;
             h(@this, new PropertyChangedEventArgs(propertyName));
